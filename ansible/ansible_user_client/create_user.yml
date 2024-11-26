@@ -1,0 +1,36 @@
+---
+- name: Ensure user exists and is added to sudoers
+  hosts: all
+  become: yes
+  vars:
+    username: "ansible"  # Default user, you can override this when running the playbook
+#ansible-playbook create_user.yml -e username="newuser"
+
+  tasks:
+    - name: Check if user exists
+      ansible.builtin.getent:
+        database: passwd
+        key: "{{ username }}"
+      register: user_check
+      ignore_errors: yes
+
+    - name: Create user if it doesn't exist
+      ansible.builtin.user:
+        name: "{{ username }}"
+        state: present
+        create_home: yes
+      when: user_check.failed
+
+    - name: Add user to sudo group
+      ansible.builtin.user:
+        name: "{{ username }}"
+        groups: sudo
+        append: yes
+      when: user_check.failed
+
+    - name: Ensure user is in sudo group (if user already exists)
+      ansible.builtin.user:
+        name: "{{ username }}"
+        groups: sudo
+        append: yes
+      when: not user_check.failed
