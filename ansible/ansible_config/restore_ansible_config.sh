@@ -11,7 +11,7 @@ SUDO_USER=$(logname)
 
 # Prompt for input and output paths
 read -p "Enter the full path to ansible.cfg: " INPUT_PATH
-OUTPUT_DIR="/etc"
+OUTPUT_DIR="/etc/ansible"
 OUTPUT_FILE="$OUTPUT_DIR/ansible.cfg"
 
 # Check if input file exists
