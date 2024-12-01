@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   vars:
-    username: "ansible"  # Default user, you can override this when running the playbook
+    username: "techt"  # Default user, you can override this when running the playbook
 #ansible-playbook create_user.yml -e username="newuser"
 
   tasks:
