@@ -1,10 +1,13 @@
-# Automation Scripts
-Linux Bash, Python scripts to automate installation, system administratotion.
 
 
 
+# Table of Contents
 
-
+- [Ansible](#Ansible)
+    -   [Install new Host for Ansible or Secure Ansible Host](#install-and-prepre-ansible-host-for-automation-and-security-host-automation)
+    -   [Ansible directory strategies](#directories)
+    -   [Ansible configuration structure](#ansible-configuration-structure)
+    -   [Installation Process](#installation)
 
 
 **Installing and creating ansible user to manage servers - bash script.**
@@ -13,10 +16,10 @@ sudo bash ansible_preparation_with_user.sh
 ```
 
 
-# Ansible 
+## Ansible 
 
 ### Install and prepre ansible host for automation and security host automation
-Requiments:
+Requirements:
 
 - 1 host for ansible automation
 
@@ -37,7 +40,7 @@ To secure ssh connection use this ansible role:
 ssh certifificate base or key base only 
 
 
-##### Directories
+### Directories
 $HOME/.ansible_config - config directory for custom ansible and ansible.cfg
 
 $HOME/.ansible_config/inventory - inventory directory
@@ -47,7 +50,53 @@ $HOME/.ansible_config/inventory - inventory directory
 <sub>*Permission applied for the specific user, creation of this directory once user is created using script.</sub>
 
 
+### Ansible configuration structure:
 
+From documentation you can defined multiple ways  of configuration.
+
+ANSIBLE_CONFIG (environment variable if set)
+ 
+$HOME/.ansible_config/ansible/ansible.cfg (in the current directory) - By this repo
+
+~/.ansible.cfg (in the home directory)
+
+/etc/ansible/ansible.cfg
+
+ 
+
+ 
+
+Under this link there is list which envoironment variables you can set and which can be set in asnible.cfg.
+
+https://docs.ansible.com/ansible/latest/reference_appendices/config.html#ansible-home
+
+ 
+
+ 
+
+Important options by envoironment variable in system which should be setup
+
+ANSIBLE_HOME=$HOME/.ansible_config/ansible/ansible.cfg
+
+* Can be deploy by this script :
+
+ 
+
+Below keys which can be setup in ansible.cfg and environment variables
+
+| Ansible.cfg Option         | ENV Variable                     | Description                                                                                         |
+|----------------------------|-----------------------------------|-----------------------------------------------------------------------------------------------------|
+| `host_key_checking`        | `ANSIBLE_HOST_KEY_CHECKING`      |                                                                                                     |
+| `vault_encrypt_salt`       | `ANSIBLE_VAULT_ENCRYPT_SALT`     |                                                                                                     |
+| `playbook_dir`             | `ANSIBLE_PLAYBOOK_DIR`           |                                                                                                     |
+| `task_timeout`             | `ANSIBLE_TASK_TIMEOUT`           |                                                                                                     |
+| `private_key_file`         | `ANSIBLE_PRIVATE_KEY_FILE`       | Option for connections using a certificate or key file to authenticate, rather than an agent or passwords |
+
+
+                                                                       
+
+
+## Installation
 <b>Follow the steps below to create host base for ansible run time.</b>
 
 ```
