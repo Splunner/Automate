@@ -8,6 +8,7 @@
     -   [Ansible directory strategies](#directories)
     -   [Ansible configuration structure](#ansible-configuration-structure)
     -   [Installation Process](#installation)
+    -   [Ansible Role template]
 
 
 **Installing and creating ansible user to manage servers - bash script.**
@@ -129,3 +130,32 @@ python3 $AutomateDirectory/ansible/ansible_config/generate_ansible_cfg.py
 #run set global variable to set such thigs as inventory global path,
 
 ```
+
+
+
+## Ansible role template schema
+
+
+roles/
+
+└── <role_name> /
+
+    ├── defaults/
+    │   └── main.yml           # Default variables for the role
+    ├── files/
+    │   └── <files>            # Static files to be copied (e.g., config files, binaries)
+    ├── handlers/
+    │   └── main.yml           # Handlers triggered by tasks
+    ├── meta/
+    │   └── main.yml           # Role metadata (dependencies, author, license, etc.)
+    ├── tasks/
+    │   └── main.yml           # Main task file, includes other task files if needed
+    │   └── <additional_tasks>.yml  # Optional task files for organization
+    ├── templates/
+    │   └── <template_files>   # Jinja2 templates to be rendered dynamically
+    ├── vars/
+    │   └── main.yml           # Variables with higher precedence than defaults
+    ├── tests/
+    │   ├── inventory          # Test inventory file for the role
+    │   └── test.yml           # Test playbook for the role
+    └── README.md              # Documentation for the role
