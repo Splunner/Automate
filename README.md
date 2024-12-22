@@ -9,7 +9,7 @@
     -   [Ansible configuration structure](#ansible-configuration-structure)
     -   [Installation Process](#installation)
     -   [Ansible Role template]
-
+- [Config files](#)
 
 **Installing and creating ansible user to manage servers - bash script.**
 ```
@@ -159,3 +159,14 @@ roles/
     │   ├── inventory          # Test inventory file for the role
     │   └── test.yml           # Test playbook for the role
     └── README.md              # Documentation for the role
+
+
+
+# Config Files
+
+
+#### Tmux
+Enable mouse, set default shell bash and synchronize it across all planes + load the config file at the end.
+```
+echo -e "set -g default-shell /bin/bash\nset -g mouse on\nbind -n C-x setw synchronize-panes" > ~/.tmux.conf && tmux source-file ~/.tmux.conf
+```
