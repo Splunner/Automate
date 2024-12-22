@@ -8,8 +8,8 @@
     -   [Ansible directory strategies](#directories)
     -   [Ansible configuration structure](#ansible-configuration-structure)
     -   [Installation Process](#installation)
-    -   [Ansible Role template]
-- [Config files](#)
+    -   [Ansible Role template](#ansible-role-template-schema)
+- [Config files](#config-files)
 
 **Installing and creating ansible user to manage servers - bash script.**
 ```
