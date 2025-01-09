@@ -71,4 +71,19 @@ create_directory "/var/log/ansible" "$username:$username" 744
 create_directory "$user_home/.ssh" "$username:$username" 700
 create_file "$user_home/.ssh/ssh_config" "$username:$username" 600
 
+# Create ssh_configs.d directory
+create_directory "$user_home/.ssh/ssh_configs.d" "$username:$username" 700
+
+# Add Include directive in ssh_config to include all files in ssh_configs.d/
+echo "Including all configuration files from $user_home/.ssh/ssh_configs.d/ in $user_home/.ssh/config"
+echo "Include $user_home/.ssh/ssh_configs.d/*" >> "$user_home/.ssh/config"
+
+# Set permissions for all files in ssh_configs.d/
+for config_file in "$user_home/.ssh/ssh_configs.d/"*; do
+  if [[ -f "$config_file" ]]; then
+    chown "$username:$username" "$config_file" && echo "Ownership of '$config_file' set to '$username:$username'."
+    chmod 600 "$config_file" && echo "Permissions for '$config_file' set to 600."
+  fi
+done
+
 exit 0
